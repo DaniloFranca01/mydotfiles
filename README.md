@@ -1,4 +1,4 @@
-# Esses são os arquivos de configurações padrões para minha instalação do Arch
+# Arquivos de configurações padrões para minha instalação do Arch
 
 - Tema padrão: Dracula
 - Wallpapers: `~/Imagens/Wallpapers`
