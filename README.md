@@ -10,7 +10,7 @@
   -  fonttable (Printa todos os caracteres de todas as fontes no terminal)
   -  mymonitor (Muda a configuração de monitores de 4 formas parametrizadas)
   -  screenshot (Tira screenshots de 3 formas parametrizadas)
-  -  zeKill (Mata tudo)
+  -  zeKill (Mire, atire e ele mata o processo)
 - Configs para:
   - qTile (Wm) Baseado em: [Source](https://gitlab.com/dwt1/dotfiles)
   - picom (Compositor, fork do jonaburg) [Source](https://github.com/jonaburg/picom)
