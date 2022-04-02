@@ -195,10 +195,22 @@ groups = [Group(" ", layout='monadtall'),
 from libqtile.dgroups import simple_key_binder
 dgroups_key_binder = simple_key_binder("mod4")
 
+# Dracula Theme
+colors = [["#282A36", "#282A36"],
+          ["#000000", "#000000"],
+          ["#F8F8F2", "#F8F8F2"],
+          ["#CAA9FA", "#CAA9FA"],
+          ["#FF92D0", "#FF92D0"],
+          ["#5AF78E", "#5AF78E"],
+          ["#F4F99D", "#F4F99D"],
+          ["#FF6E67", "#FF6E67"],
+          ["#9AEDFE", "#9AEDFE"],
+          ["#E6E6E6", "#E6E6E6"]]
+
 layout_theme = {"border_width": 3,
                 "margin": 6,
-                "border_focus": "e1acff",
-                "border_normal": "1D2330"
+                "border_focus": colors[3],
+                "border_normal": colors[4]
                 }
 
 layouts = [
@@ -214,7 +226,7 @@ layouts = [
     layout.Bsp(**layout_theme),
     layout.MonadTall(**layout_theme),
     layout.Max(**layout_theme),
-    layout.Stack(num_stacks=2),
+    layout.Stack(num_stacks=2,**layout_theme),
     layout.RatioTile(**layout_theme),
     layout.TreeTab(
          font = fontFamily,
@@ -222,11 +234,11 @@ layouts = [
          sections = ["FIRST", "SECOND", "THIRD", "FOURTH"],
          section_fontsize = 12,
          border_width = 2,
-         bg_color = "1c1f24",
-         active_bg = "c678dd",
-         active_fg = "000000",
-         inactive_bg = "a9a1e1",
-         inactive_fg = "1c1f24",
+         bg_color = colors[0],
+         active_bg = colors[4],
+         active_fg = colors[2],
+         inactive_bg = colors[3],
+         inactive_fg = colors[1],
          padding_left = 0,
          padding_x = 0,
          padding_y = 5,
@@ -238,19 +250,6 @@ layouts = [
          ),
     layout.Floating(**layout_theme)
 ]
-
-# Dracula Theme
-colors = [["#282A36", "#282A36"],
-          ["#000000", "#000000"],
-          ["#F8F8F2", "#F8F8F2"],
-          ["#CAA9FA", "#CAA9FA"],
-          ["#FF92D0", "#FF92D0"],
-          ["#5AF78E", "#5AF78E"],
-          ["#F4F99D", "#F4F99D"],
-          ["#FF6E67", "#FF6E67"],
-          ["#9AEDFE", "#9AEDFE"],
-          ["#E6E6E6", "#E6E6E6"]]
-
 
 prompt = "{0}@{1}: ".format(os.environ["USER"], socket.gethostname())
 
@@ -496,10 +495,26 @@ floating_layout = layout.Floating(float_rules=[
     # Run the utility of `xprop` to see the wm class and name of an X client.
     # default_float_rules include: utility, notification, toolbar, splash, dialog,
     # file_progress, confirm, download and error.
-    *layout.Floating.default_float_rules,
+    #*layout.Floating.default_float_rules,
+    Match(wm_type="utility"),
+    Match(wm_type="notification"),
+    Match(wm_type="toolbar"),
+    Match(wm_type="splash"),
+    Match(wm_type="dialog"),
+    Match(wm_class="file_progress"),
+    Match(wm_class="confirm"),
+    Match(wm_class="dialog"),
+    Match(wm_class="download"),
+    Match(wm_class="error"),
+    Match(wm_class="notification"),
+    Match(wm_class="splash"),
+    Match(wm_class="toolbar"),
+    Match(func=lambda c: c.has_fixed_size()),
+    Match(func=lambda c: c.has_fixed_ratio()),
     Match(title='Confirmation'),      # tastyworks exit box
     Match(title='Qalculate!'),        # qalculate-gtk
-])
+],**layout_theme)
+
 auto_fullscreen = True
 focus_on_window_activation = "smart"
 reconfigure_screens = True
