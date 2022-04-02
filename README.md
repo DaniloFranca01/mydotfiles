@@ -5,6 +5,7 @@
 - Scripts: `~/Scripts`
   -  comp e compon (Liga/desliga o compositor(picom ou xcompmgr) e notifica)
   -  runPasystray (Inicia o tray do pulse audio)
+  -  fonttable (Printa todos os caracteres de todas as fontes no terminal)
   -  mymonitor (Muda a configuração de monitores de 4 formas parametrizadas)
   -  screenshot (Tira screenshots de 3 formas parametrizadas)
   -  zeKill (Mata tudo)
