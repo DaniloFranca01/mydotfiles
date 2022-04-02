@@ -1,5 +1,7 @@
 # Arquivos de configurações padrões para minha instalação do Arch
 
+![](preview.png)
+
 - Tema padrão: Dracula
 - Wallpapers: `~/Imagens/Wallpapers`
 - Scripts: `~/Scripts`
@@ -21,3 +23,9 @@
 	  - launcher
 	  - power menu
 	  - menu de monitor
+
+# Instalação
+
+``` bash
+$ echo "Em breve?"
+```
