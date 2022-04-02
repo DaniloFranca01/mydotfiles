@@ -9,18 +9,18 @@ styles=$dir/styles/
 rofi_command="rofi -theme $styles/monitormenu.rasi"
 
 # Options
-monitor="度"
 tv=" "
-duplicar=" 度"
-extender="度 度"
+monitor="度"
+extender=" 度"
+duplicar="度 度"
 
 # Variable passed to rofi
-options="$tv\n$monitor\n$duplicar\n$extender"
+options="$tv\n$monitor\n$extender\n$duplicar"
 
 chosen="$(echo -e "$options" | $rofi_command -p -dmenu -selected-row 1)"
 case $chosen in 
-				$monitor) $HOME/Scripts/mymntr.sh -m ;;
 				$tv) $HOME/Scripts/mymntr.sh -t ;;
-				$duplicar) $HOME/Scripts/mymntr.sh -d ;;
+				$monitor) $HOME/Scripts/mymntr.sh -m ;;
 				$extender) $HOME/Scripts/mymntr.sh -e ;;
+				$duplicar) $HOME/Scripts/mymntr.sh -d ;;
 esac

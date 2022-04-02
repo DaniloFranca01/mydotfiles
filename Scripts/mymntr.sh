@@ -5,7 +5,7 @@ case $1 in
 		;;
 		"-d") xrandr --output HDMI-0 --auto --same-as DVI-D-0 --output DVI-D-0 --auto
 		;;
-		"-e") xrandr --output HDMI-0 --auto --left-of DVI-D-0 --output DVI-D-0 --auto --primary
+		"-e") xrandr --output HDMI-0 --auto --left-of DVI-D-0 --output DVI-D-0 --primary --auto 	
 		;;
 		"-h") echo -e "-m  -- monitor\n-t  -- tv\n-d  -- duplicar tela\n-e  -- extender tela\n-h  -- ajuda"
 esac
