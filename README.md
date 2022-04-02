@@ -10,14 +10,14 @@
   -  screenshot (Tira screenshots de 3 formas parametrizadas)
   -  zeKill (Mata tudo)
 - Configs para:
-  - qTile (Wm)
+  - qTile (Wm) Baseado em: [Source](https://gitlab.com/dwt1/dotfiles)
   - picom (Compositor, fork do jonaburg) [Source](https://github.com/jonaburg/picom)
 	- vim/nvim (Editor de texto)
 	- zsh (Shell)
 	- ranger (Gerenciador de Arquivos)
 	- kitty (Emulador de rerminal)
 	- paru (AUR manager) [Source](https://github.com/Morganamilo/paru)
-	- rofi (Menus)
+	- rofi (Menus) Baseado em: [Source](https://github.com/adi1090x/rofi)
 	  - launcher
 	  - power menu
 	  - menu de monitor
