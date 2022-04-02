@@ -61,7 +61,7 @@ keys = [
              lazy.spawn(menu+"powermenu.sh"),
              desc='Run Power Menu'
              ),
-         Key([mod, "shift"], "p",
+         Key([mod], "p",
              lazy.spawn(menu+"monitormenu.sh"),
              desc='Run Monitors Menu'
              ),
@@ -209,8 +209,8 @@ colors = [["#282A36", "#282A36"],
 
 layout_theme = {"border_width": 3,
                 "margin": 6,
-                "border_focus": colors[3],
-                "border_normal": colors[4]
+                "border_focus": colors[4],
+                "border_normal": colors[3]
                 }
 
 layouts = [
@@ -500,15 +500,11 @@ floating_layout = layout.Floating(float_rules=[
     Match(wm_type="notification"),
     Match(wm_type="toolbar"),
     Match(wm_type="splash"),
-    Match(wm_type="dialog"),
+    Match(wm_class="dialog"),
     Match(wm_class="file_progress"),
     Match(wm_class="confirm"),
-    Match(wm_class="dialog"),
     Match(wm_class="download"),
     Match(wm_class="error"),
-    Match(wm_class="notification"),
-    Match(wm_class="splash"),
-    Match(wm_class="toolbar"),
     Match(func=lambda c: c.has_fixed_size()),
     Match(func=lambda c: c.has_fixed_ratio()),
     Match(title='Confirmation'),      # tastyworks exit box

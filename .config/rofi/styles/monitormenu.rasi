@@ -56,7 +56,7 @@ element {
 element-text {
     background-color: 				inherit;
     text-color:       				inherit;
-    font:							"feather 38";
+    font:							"feather 37";
     expand:                         true;
     horizontal-align:               0.5;
     vertical-align:                 0.5;
