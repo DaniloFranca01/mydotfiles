@@ -12,6 +12,7 @@ from libqtile.utils import guess_terminal
 from typing import List  # noqa: F401from typing import List  # noqa: F401
 
 home = os.path.expanduser('~')
+execTerm= "kitty -e "
 menu = home+"/.config/rofi/bin/"
 scripts = home+"/Scripts/"
 fontFamily = "Ubuntu"
@@ -22,10 +23,36 @@ myBrowser = "firefox" # My browser of choice
 
 keys = [
          ### The essentials
+         Key([mod], "Tab",
+             lazy.next_layout(),
+             desc='Toggle through layouts'
+             ),
+         Key([mod], "q",
+             lazy.window.kill(),
+             desc='Kill active window'
+             ),
          Key([mod], "Return",
              lazy.spawn(myTerm),
              desc='Launches My Terminal'
              ),
+         Key([mod], "w",
+             lazy.spawn(myBrowser),
+             desc='Firefox'
+             ),
+         ### Others
+         Key([mod], "v",
+             lazy.spawn(execTerm+"nvim"),
+             desc='NeoVim'
+             ),
+         Key([mod], "b",
+             lazy.spawn(execTerm+"btop"),
+             desc='BTop'
+             ),
+         Key([mod], "r",
+             lazy.spawn(execTerm+"ranger"),
+             desc='Ranger Files'
+             ),
+         ### Menus
          Key([mod], "d",
              lazy.spawn(menu+"launcher.sh"),
              desc='Run Rofi'
@@ -38,18 +65,7 @@ keys = [
              lazy.spawn(menu+"monitormenu.sh"),
              desc='Run Monitors Menu'
              ),
-         Key([mod], "w",
-             lazy.spawn(myBrowser),
-             desc='Firefox'
-             ),
-         Key([mod], "Tab",
-             lazy.next_layout(),
-             desc='Toggle through layouts'
-             ),
-         Key([mod], "q",
-             lazy.window.kill(),
-             desc='Kill active window'
-             ),
+         ### Restarts
          Key([mod, "shift"], "r",
              lazy.restart(),
              desc='Restart Qtile'
@@ -58,10 +74,11 @@ keys = [
              lazy.shutdown(),
              desc='Shutdown Qtile'
              ),
-         Key(["control", "shift"], "e",
-             lazy.spawn("nvim"),
-             desc='NeoVim'
+         Key([mod, "shift"], "p",
+             lazy.spawn(scripts+"comp.sh"),
+             desc='Reload Picom'
              ),
+         ### Prints
          Key([],"Print",
              lazy.spawn(scripts+"screenshots.sh u"),
              desc='Screenshot'
@@ -73,10 +90,6 @@ keys = [
          Key(["control", "shift"],"Print",
              lazy.spawn(scripts+"screenshots.sh i"),
              desc='Screenshot'
-             ),
-         Key([mod, "shift"], "p",
-             lazy.spawn(scripts+"comp.sh"),
-             desc='Reload Picom'
              ),
          ### Switch focus to specific monitor (out of three)
          Key([mod, alt], "1", 
@@ -277,7 +290,7 @@ def init_widgets_list():
                        padding_y = 0,
                        padding_x = 3,
                        borderwidth = 3,
-                       active = colors[2],
+                       active = colors[3],
                        inactive = colors[1],
                        rounded = False,
                        highlight_color = colors[1],
