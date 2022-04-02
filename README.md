@@ -1,0 +1,22 @@
+# Esses são os arquivos de configurações padrões para minha inm=stalação do Arch
+
+- Tema padrão: Dracula
+- Wallpapers: `~/Imagens/Wallpapers`
+- Scripts: `~/Scripts`
+  -  comp e compon (Liga/desliga o compositor(picom ou xcompmgr) e notifica)
+  -  runPasystray (Inicia o tray do pulse audio)
+  -  mymonitor (Muda a configuração de monitores de 4 formas parametrizadas)
+  -  screenshot (Tira screenshots de 3 formas parametrizadas)
+  -  zeKill (Mata tudo)
+- Configs para:
+  - qTile (Wm)
+  - picom (Compositor, fork do jonaburg) [Source](https://github.com/jonaburg/picom)
+	- vim/nvim (Editor de texto)
+	- zsh (Shell)
+	- ranger (Gerenciador de Arquivos)
+	- kitty (Emulador de rerminal)
+	- paru (AUR manager) [Source](https://github.com/Morganamilo/paru)
+	- rofi (Menus)
+	  - launcher
+	  - power menu
+	  - menu de monitor
