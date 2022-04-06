@@ -357,7 +357,7 @@ myKeys =
         , ("M-d", spawn "~/.config/rofi/bin/launcher.sh") -- Laucher
         , ("M-S-d", spawn "~/.config/rofi/bin/powermenu.sh") -- PowerMenu
         , ("M-S-p", spawn "~/.config/rofi/bin/monitormenu.sh") -- MonitorMenu
-
+				, ("M-<Print>", spawn "~/Scripts/screenshots.sh u")          -- screenshot
     -- KB_GROUP Other Dmenu Prompts
     -- In Xmonad and many tiling window managers, M-p is the default keybinding to
     -- launch dmenu_run, so I've decided to use M-p plus KEY for these dmenu scripts.
