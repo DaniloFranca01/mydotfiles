@@ -12,7 +12,9 @@
   -  screenshot (Tira screenshots de 3 formas parametrizadas)
   -  zeKill (Mire, atire e ele mata o processo)
 - Configs para:
-  - qTile (Wm) Baseado em: [Source](https://gitlab.com/dwt1/dotfiles)
+  - Xmonad (Tilling WM) Baseado em: [Source](https://gitlab.com/dwt1/dotfiles)
+	  - Xmobar (Status Bar) 
+  - qTile (Tilling WM) Baseado em: [Source](https://gitlab.com/dwt1/dotfiles)
   - picom (Compositor, fork do jonaburg) [Source](https://github.com/jonaburg/picom)
 	- vim/nvim (Editor de texto)
 	- zsh (Shell)
