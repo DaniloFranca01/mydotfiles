@@ -1,7 +1,10 @@
 # Arquivos de configurações padrões para minha instalação do Arch
 
-![](preview.png)
+## qTile
+![](qTilePreview.png)
 
+## xMonad
+![](xMonadPreview.png)
 - Tema padrão: Dracula
 - Wallpapers: `~/Imagens/Wallpapers`
 - Scripts: `~/Scripts`
