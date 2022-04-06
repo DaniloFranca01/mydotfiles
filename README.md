@@ -23,7 +23,6 @@
 	- zsh (Shell)
 	- ranger (Gerenciador de Arquivos)
 	- kitty (Emulador de terminal)
-	- st (Emulador de terminal) [Source](https://git.suckless.org/st)
 	- paru (AUR manager) [Source](https://github.com/Morganamilo/paru)
 	- rofi (Menus) Baseado em: [Source](https://github.com/adi1090x/rofi)
 	  - launcher
