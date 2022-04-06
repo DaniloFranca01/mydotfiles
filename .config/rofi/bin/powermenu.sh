@@ -82,7 +82,9 @@ case $chosen in
 		ans=$(confirm_exit &)
 		if [[ $ans == "yes" || $ans == "YES" || $ans == "y" || $ans == "Y" ]]; then
 			if [[ "$DESKTOP_SESSION" == "qtile" ]]; then
-				qtile qtile cmd-obj -o cmd -f shutdown
+				exec killall qtile
+			elif [[ "$DESKTOP_SESSION" == "xmonad" ]]; then
+				exec killall xmonad-x86_64-linux
 			elif [[ "$DESKTOP_SESSION" == "bspwm" ]]; then
 				bspc quit
 			elif [[ "$DESKTOP_SESSION" == "i3" ]]; then

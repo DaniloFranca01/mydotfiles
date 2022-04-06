@@ -12,13 +12,13 @@ from libqtile.utils import guess_terminal
 from typing import List  # noqa: F401from typing import List  # noqa: F401
 
 home = os.path.expanduser('~')
-execTerm= "kitty -e "
 menu = home+"/.config/rofi/bin/"
 scripts = home+"/Scripts/"
 fontFamily = "Ubuntu"
 mod = "mod4" # Sets mod key to SUPER/WINDOWS
 alt = "mod1"
-myTerm = "kitty"      # My terminal of choice
+myTerm = "st"      # My terminal of choice
+execTerm= myTerm+" -e "
 myBrowser = "firefox" # My browser of choice
 
 keys = [
@@ -270,8 +270,8 @@ def init_widgets_list():
                        font = fontFamily+" Mono",
                        background = colors[6],
                        foreground = colors[1],
-                       padding = 3,
-                       fontsize = 17
+                       padding = 6,
+                       fontsize = 18
                        ),
               widget.TextBox(
                        text = '',
@@ -279,7 +279,7 @@ def init_widgets_list():
                        background = colors[5],
                        foreground = colors[6],
                        padding = 0,
-                       fontsize = 17
+                       fontsize = 18
                        ),
               widget.GroupBox(
                        font = fontFamily,
@@ -307,19 +307,19 @@ def init_widgets_list():
                        background = colors[4],
                        foreground = colors[5],
                        padding = 0,
-                       fontsize = 17
+                       fontsize = 18
                        ),
               widget.CurrentLayoutIcon(
                        custom_icon_paths = [home+"/.config/qtile/icons"],
                        foreground = colors[1],
                        background = colors[4],
                        padding = 0,
-                       scale = 0.7
+                       scale = 0.9
                        ),
               widget.CurrentLayout(
                        foreground = colors[1],
                        background = colors[4],
-                       padding = 5
+                       padding = 6
                        ),
               widget.TextBox(
                        text = '',
@@ -327,7 +327,7 @@ def init_widgets_list():
                        background = colors[3],
                        foreground = colors[4],
                        padding = 0,
-                       fontsize = 17
+                       fontsize = 18
                        ),
               widget.TextBox(
                        text = '',
@@ -335,12 +335,12 @@ def init_widgets_list():
                        background = colors[0],
                        foreground = colors[3],
                        padding = 0,
-                       fontsize = 17
+                       fontsize = 18
                        ),
               widget.WindowName(
                        foreground = colors[2],
                        background = colors[0],
-                       padding = 0
+                       padding = 6
                        ),
               widget.Sep(
                        linewidth = 0,
@@ -350,7 +350,7 @@ def init_widgets_list():
                        ),
               widget.Systray(
                        background = colors[0],
-                       padding = 5
+                       padding = 6
                        ),
               widget.Sep(
                        linewidth = 0,
@@ -372,7 +372,7 @@ def init_widgets_list():
                        foreground = colors[1],
                        background = colors[3],
                        prefix = 'M',
-                       padding = 5
+                       padding = 6
                        ),
               widget.TextBox(
                        text = '',
@@ -384,13 +384,13 @@ def init_widgets_list():
                        ),
               widget.CheckUpdates(
                        update_interval = 1800,
-                       distro = "Arch_checkupdates",
+                       distro = "Arch_paru",
                        display_format = "Updates: {updates} ",
                        foreground = colors[1],
                        colour_have_updates = colors[1],
                        colour_no_updates = colors[1],
-                       mouse_callbacks = {'Button1': lambda: qtile.cmd_spawn(myTerm + ' -e sudo pacman -Syu')},
-                       padding = 5,
+                       mouse_callbacks = {'Button1': lambda: qtile.cmd_spawn(myTerm + ' -e paru ')},
+                       padding = 6,
                        background = colors[4]
                        ),
               widget.TextBox(
@@ -405,7 +405,7 @@ def init_widgets_list():
                        foreground = colors[1],
                        background = colors[5],
                        fmt = 'Vol: {}',
-                       padding = 5
+                       padding = 6
                        ),
               widget.TextBox(
                        text = '',
@@ -497,19 +497,21 @@ floating_layout = layout.Floating(float_rules=[
     # file_progress, confirm, download and error.
     #*layout.Floating.default_float_rules,
     Match(wm_type="utility"),
-    Match(wm_type="notification"),
-    Match(wm_type="toolbar"),
     Match(wm_type="splash"),
-    Match(wm_class="dialog"),
     Match(wm_class="file_progress"),
     Match(wm_class="confirm"),
+    Match(wm_class="dialog"),
+    Match(wm_type="dialog"),
     Match(wm_class="download"),
     Match(wm_class="error"),
-    Match(func=lambda c: c.has_fixed_size()),
-    Match(func=lambda c: c.has_fixed_ratio()),
+    Match(wm_class="notification"), 
+    Match(wm_type="notification"),
+    Match(wm_class="splash"),
+    Match(wm_class="toolbar"),
+    Match(wm_type="toolbar"),
     Match(title='Confirmation'),      # tastyworks exit box
     Match(title='Qalculate!'),        # qalculate-gtk
-],**layout_theme)
+    ],**layout_theme)
 
 auto_fullscreen = True
 focus_on_window_activation = "smart"

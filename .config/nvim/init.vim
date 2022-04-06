@@ -14,7 +14,7 @@ call plug#end()
 "Vim
 set mouse=a
 set encoding=UTF-8
-set tabstop=4
+set tabstop=2
 set number
 set t_Co=256
 "set signcolumn=number
@@ -37,7 +37,7 @@ let g:airline_powerline_fonts = 1
 
 " Git Gutter
 let g:gitgutter_enable = 1
-highlight SignColumn guibg=#0C0912 ctermbg=black
+"highlight SignColumn guibg=#0C0912 ctermbg=black
 "let g:gitgutter_set_sign_backgrounds = 1
 
 "NERDTree
