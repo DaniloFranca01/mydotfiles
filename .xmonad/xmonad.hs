@@ -274,7 +274,7 @@ sys      = " <fn=1>\xe795</fn> "
 chat     = " <fn=1>\xf075</fn> "
 doc      = " <fn=1>\xe7c5</fn>"
 
-myWorkspaces = [dev, internet, sys, chat, doc]
+myWorkspaces = [sys, internet, dev, chat, doc]
 myWorkspaceIndices = M.fromList $ zipWith (,) myWorkspaces [1..] -- (,) == \x y -> (x,y)
 
 clickable ws = "<action=xdotool key super+"++show i++">"++ws++"</action>"
