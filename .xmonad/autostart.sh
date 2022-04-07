@@ -1,4 +1,5 @@
 #! /bin/sh
+xsetroot -cursor_name left_ptr &
 nvidia-settings --load-config-only &
 dunst &
 nm-applet &

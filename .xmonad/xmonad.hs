@@ -111,16 +111,7 @@ myStartupHook :: X ()
 myStartupHook = do  
   spawn "killall trayer"  -- kill current trayer on each restart
   spawnOnce "$HOME/.xmonad/autostart.sh"
-    --spawnOnce "lxsession"
-    --spawnOnce "picom"
-    --spawnOnce "nm-applet"
-
-  spawn ("sleep 2 && trayer --edge top --align right --widthtype request --padding 6 --SetDockType true --SetPartialStrut true --expand true --monitor 1 --transparent true --alpha 0 " ++ colorTrayer ++ " --height 22")
-
-    -- spawnOnce "xargs xwallpaper --stretch < ~/.cache/wall"
-    -- spawnOnce "~/.fehbg &"  -- set last saved feh wallpaper
-    -- spawnOnce "feh --randomize --bg-fill ~/wallpapers/*"  -- feh set random wallpaper
-    -- spawnOnce "nitrogen --restore &"   -- if you prefer nitrogen to feh
+  spawn ("sleep 2 && trayer --iconspacing 3 --edge top --align right --widthtype request --padding 3 --SetDockType true --SetPartialStrut true --expand true --monitor 1 --transparent true --alpha 0 " ++ colorTrayer ++ " --height 22")
   setWMName "LG3D"
 
 myColorizer :: Window -> Bool -> X (String, String)
@@ -218,24 +209,15 @@ tall     = renamed [Replace "tall"]
            $ limitWindows 12
            $ mySpacing 2
            $ ResizableTall 1 (3/100) (1/2) []
-magnify  = renamed [Replace "magnify"]
+floats   = renamed [Replace "floats"]
            $ smartBorders
-           $ windowNavigation
-           $ addTabs shrinkText myTabTheme
-           $ subLayout [] (smartBorders Simplest)
-           $ magnifier
-           $ limitWindows 12
-           $ mySpacing 8
-           $ ResizableTall 1 (3/100) (1/2) []
+           $ limitWindows 20 simplestFloat
 monocle  = renamed [Replace "monocle"]
            $ smartBorders
            $ windowNavigation
            $ addTabs shrinkText myTabTheme
            $ subLayout [] (smartBorders Simplest)
            $ limitWindows 20 Full
-floats   = renamed [Replace "floats"]
-           $ smartBorders
-           $ limitWindows 20 simplestFloat
 grid     = renamed [Replace "grid"]
            $ smartBorders
            $ windowNavigation
@@ -245,30 +227,6 @@ grid     = renamed [Replace "grid"]
            $ mySpacing 8
            $ mkToggle (single MIRROR)
            $ Grid (16/10)
-spirals  = renamed [Replace "spirals"]
-           $ smartBorders
-           $ windowNavigation
-           $ addTabs shrinkText myTabTheme
-           $ subLayout [] (smartBorders Simplest)
-           $ mySpacing' 8
-           $ spiral (6/7)
-threeCol = renamed [Replace "threeCol"]
-           $ smartBorders
-           $ windowNavigation
-           $ addTabs shrinkText myTabTheme
-           $ subLayout [] (smartBorders Simplest)
-           $ limitWindows 7
-           $ ThreeCol 1 (3/100) (1/2)
-threeRow = renamed [Replace "threeRow"]
-           $ smartBorders
-           $ windowNavigation
-           $ addTabs shrinkText myTabTheme
-           $ subLayout [] (smartBorders Simplest)
-           $ limitWindows 7
-           -- Mirror takes a layout and rotates it by 90 degrees.
-           -- So we are applying Mirror to the ThreeCol layout.
-           $ Mirror
-           $ ThreeCol 1 (3/100) (1/2)
 tabs     = renamed [Replace "tabs"]
            -- I cannot add spacing to this layout because it will
            -- add spacing between window and tabs which looks bad.
@@ -288,6 +246,7 @@ myTabTheme = def { fontName            = myFont
                  , inactiveTextColor   = color16
                  }
 
+
 -- Theme for showWName which prints current workspace when you change workspaces.
 myShowWNameTheme :: SWNConfig
 myShowWNameTheme = def
@@ -302,19 +261,20 @@ myLayoutHook = avoidStruts $ mouseResize $ windowArrange $ T.toggleLayouts float
                $ mkToggle (NBFULL ?? NOBORDERS ?? EOT) myDefaultLayout
              where
                myDefaultLayout =     withBorder myBorderWidth tall
-                                 ||| magnify
+							                   ||| floats
                                  ||| noBorders monocle
-                                 ||| floats
                                  ||| noBorders tabs
                                  ||| grid
-                                 ||| spirals
-                                 ||| threeCol
-                                 ||| threeRow
-                                 ||| tallAccordion
-                                 ||| wideAccordion
 
---myWorkspaces = [" 1 ", " 2 ", " 3 ", " 4 ", " 5 ", " 6 ", " 7 ", " 8 ", " 9 "]
-myWorkspaces = [" dev ", " www ", " sys ", " chat ", " doc "]
+
+-- Icons
+dev      = " <fn=1>\xe73c</fn> "
+internet = " <fn=1>\xf269</fn> "
+sys      = " <fn=1>\xe795</fn> "
+chat     = " <fn=1>\xf075</fn> "
+doc      = " <fn=1>\xe7c5</fn>"
+
+myWorkspaces = [dev, internet, sys, chat, doc]
 myWorkspaceIndices = M.fromList $ zipWith (,) myWorkspaces [1..] -- (,) == \x y -> (x,y)
 
 clickable ws = "<action=xdotool key super+"++show i++">"++ws++"</action>"
@@ -358,25 +318,8 @@ myKeys =
         , ("M-S-d", spawn "~/.config/rofi/bin/powermenu.sh") -- PowerMenu
         , ("M-S-p", spawn "~/.config/rofi/bin/monitormenu.sh") -- MonitorMenu
 				, ("M-<Print>", spawn "~/Scripts/screenshots.sh u")          -- screenshot
-    -- KB_GROUP Other Dmenu Prompts
-    -- In Xmonad and many tiling window managers, M-p is the default keybinding to
-    -- launch dmenu_run, so I've decided to use M-p plus KEY for these dmenu scripts.
-        , ("M-p h", spawn "dm-hub")           -- allows access to all dmscripts
-        , ("M-p a", spawn "dm-sounds")        -- choose an ambient background
-        , ("M-p b", spawn "dm-setbg")         -- set a background
-        , ("M-p c", spawn "dtos-colorscheme") -- choose a colorscheme
-        , ("M-p C", spawn "dm-colpick")       -- pick color from our scheme
-        , ("M-p e", spawn "dm-confedit")      -- edit config files
-        , ("M-p i", spawn "dm-maim")          -- screenshots (images)
-        , ("M-p k", spawn "dm-kill")          -- kill processes
-        , ("M-p m", spawn "dm-man")           -- manpages
-        , ("M-p n", spawn "dm-note")          -- store one-line notes and copy them
-        , ("M-p o", spawn "dm-bookman")       -- qutebrowser bookmarks/history
-        , ("M-p p", spawn "passmenu -p \"Pass: \"") -- passmenu
-        , ("M-p q", spawn "dm-logout")        -- logout menu
-        , ("M-p r", spawn "dm-radio")         -- online radio
-        , ("M-p s", spawn "dm-websearch")     -- search various search engines
-        , ("M-p t", spawn "dm-translate")     -- translate text (Google Translate)
+        , ("S-<Print>", spawn "~/Scripts/screenshots.sh s")          -- selection screenshot
+        , ("C-S-<Print>", spawn "~/Scripts/screenshots.sh i")        -- window screenshot
 
     -- KB_GROUP Useful programs to have a keybinding for launch
         , ("M-<Return>", spawn (myTerminal))
@@ -497,7 +440,9 @@ main = do
         , modMask            = myModMask
         , terminal           = myTerminal
         , startupHook        = myStartupHook
-        , layoutHook         = showWName' myShowWNameTheme $ myLayoutHook
+        , layoutHook         = myLayoutHook
+				, focusFollowsMouse  = False
+				--, layoutHook         = showWName' myShowWNameTheme $ myLayoutHook
         , workspaces         = myWorkspaces
         , borderWidth        = myBorderWidth
         , normalBorderColor  = myNormColor

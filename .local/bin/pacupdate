@@ -1,4 +1,4 @@
 #!/bin/bash
 
-cupd=$(checkupdates | wc -l) 
+cupd=$(paru -Qu | wc -l) 
 echo "$cupd updates "

@@ -28,11 +28,11 @@ Config { font            = "xft:Ubuntu Nerd Font:weight=bold:pixelsize=12:antial
        , persistent   = True
        , iconRoot     = ".xmonad/xpm/"  -- default: "."
        , commands = [-- Check for pacman updates (script found in .local/bin)
-			                Run Com ".local/bin/pacupdate" [] "pacupdate" 10000
+			                Run Com ".local/bin/pacupdate" [] "pacupdate" 600000
 								     -- Echos a "arch" icon in front of the pacman updates.
                     , Run Com "echo" ["<fn=1>\xf303</fn> "] "arch" 3600
 								     -- Time and date
-                    , Run Date "<fn=1>\xf017</fn>  %b %d %Y - (%H:%M) " "date" 50
+                    , Run Date "<fn=1>\xf017</fn> %A, %d %B %Y - %H:%M" "date" 50
                         -- Script that dynamically adjusts xmobar padding depending on number of trayer icons.
                     , Run Com ".config/xmobar/trayer-padding-icon.sh" [] "trayerpad" 20
                         -- Prints out the left side items such as workspaces, layout, etc.
