@@ -9,14 +9,16 @@ saida=$diretorio$nome$separador$data$formato
 
 case $1 in
   "u")
-    exec maim -u $saida &
-	;;
+    maim -u $saida
+		;;
   "s")
-    exec maim -s $saida &
-	;;
+    maim -s $saida
+		;;
   "i")
-    exec maim -u -i $(xdotool getactivewindow) $saida &
-	;;
+    maim -u -i $(xdotool getactivewindow) $saida
+		;;
 esac
 
-dunstify "[$nome]" "[$nome$separador$data$formato]\n[Salvo em:$diretorio]" -u low
+if [ $? = 0 ]; then 
+  dunstify "[$nome]" "[$nome$separador$data$formato]\n[Salvo em:$diretorio]" -u low
+fi
