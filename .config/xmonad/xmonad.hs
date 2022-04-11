@@ -25,18 +25,6 @@ import XMonad.Hooks.ManageDocks
   )
 import XMonad.Hooks.ManageHelpers (doFullFloat, isFullscreen, doCenterFloat)
 import XMonad.Hooks.SetWMName
-import XMonad.Layout.Fullscreen as F
-  ( fullscreenFull,
-    fullscreenManageHook,
-    fullscreenSupport,
-		fullscreenEventHook,
-  )
-import XMonad.Layout.Gaps
-  ( Direction2D (D, L, R, U),
-    GapMessage (DecGap, IncGap, ToggleGaps),
-    gaps,
-    setGaps,
-  )
 import XMonad.Layout.NoBorders
 import XMonad.Layout.Spacing (Border (Border), spacingRaw)
 import XMonad.Layout.MultiToggle(Toggle(..), single, mkToggle)
@@ -46,10 +34,11 @@ import XMonad.Util.SpawnOnce (spawnOnce)
 
 -- The preferred terminal program, which is used in a binding below and by
 -- certain contrib modules.
---
+
 myTerminal = "st"
 exeParam   = " -e " 
 
+-- Execute some terminal programs
 executor :: String -> String 
 executor program = do myTerminal ++ exeParam ++ program
 
@@ -83,32 +72,14 @@ myModMask = mod4Mask
 --
 -- A tagging example:
 --
--- > workspaces = ["web", "irc", "code" ] ++ map show [4..9]
+-- > workspaces = ["sys", "web", "code", "chat", "docs" ] ++ map show [4..9]
 --
---myWorkspaces = ["\63083", "\63288", "\63306", "\63107", "\63391"] 
 myWorkspaces = ["\63083", "\63288", "\57909", "\63107", "\59333"] 
-
 
 -- Border colors for unfocused and focused windows, respectively.
 --
-myNormalBorderColor = "#bd93f9"
+myNormalBorderColor  = "#bd93f9"
 myFocusedBorderColor = "#ff79c6"
-
-addNETSupported :: Atom -> X ()
-addNETSupported x = withDisplay $ \dpy -> do
-  r <- asks theRoot
-  a_NET_SUPPORTED <- getAtom "_NET_SUPPORTED"
-  a <- getAtom "ATOM"
-  liftIO $ do
-    sup <- (join . maybeToList) <$> getWindowProperty32 dpy a_NET_SUPPORTED r
-    when (fromIntegral x `notElem` sup) $
-      changeProperty32 dpy r a_NET_SUPPORTED a propModeAppend [fromIntegral x]
-
-addEWMHFullscreen :: X ()
-addEWMHFullscreen = do
-  wms <- getAtom "_NET_WM_STATE"
-  wfs <- getAtom "_NET_WM_STATE_FULLSCREEN"
-  mapM_ addNETSupported [wms, wfs]
 
 ------------------------------------------------------------------------
 -- Key bindings. Add, modify or remove key bindings here.
@@ -130,18 +101,6 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) =
       -- Close focused window
       ((modm, xK_q), kill),
       ((modm, xK_f), sendMessage (Toggle FULL)),
-      -- GAPS!!!
-      ((modm .|. controlMask, xK_g), sendMessage $ ToggleGaps), -- toggle all gaps
-      ((modm .|. shiftMask, xK_g), sendMessage $ setGaps [(L, 30), (R, 30), (U, 40), (D, 60)]), -- reset the GapSpec
-      ((modm .|. controlMask, xK_t), sendMessage $ IncGap 10 L), -- increment the left-hand gap
-      ((modm .|. shiftMask, xK_t), sendMessage $ DecGap 10 L), -- decrement the left-hand gap
-      ((modm .|. controlMask, xK_y), sendMessage $ IncGap 10 U), -- increment the top gap
-      ((modm .|. shiftMask, xK_y), sendMessage $ DecGap 10 U), -- decrement the top gap
-      ((modm .|. controlMask, xK_u), sendMessage $ IncGap 10 D), -- increment the bottom gap
-      ((modm .|. shiftMask, xK_u), sendMessage $ DecGap 10 D), -- decrement the bottom gap
-      ((modm .|. controlMask, xK_i), sendMessage $ IncGap 10 R), -- increment the right-hand gap
-      ((modm .|. shiftMask, xK_i), sendMessage $ DecGap 10 R), -- decrement the right-hand gap
-
       -- Rotate through the available layout algorithms
       ((modm, xK_space), sendMessage NextLayout),
       --  Reset the layouts on the current workspace to default
@@ -185,11 +144,7 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) =
       ((0, xF86XK_MonBrightnessDown), spawn "brightnessctl s 10-%"),
 
 			-- Restart xmonad
-      ((modm .|. shiftMask, xK_r), spawn "xmonad --recompile; xmonad --restart"),
-      -- Run xmessage with a summary of the default keybindings (useful for beginners)
-      --((modm .|. shiftMask, xK_h), spawn ("echo \"" ++ help ++ "\" | xclip -in -selection clipboard"))
-      ((modm .|. shiftMask, xK_h), spawn ("echo \"" ++ help ++ "\" | nvim"))
-    ]
+      ((modm .|. shiftMask, xK_r), spawn "xmonad --recompile; xmonad --restart") ]
       ++
       --
       -- mod-[1..9], Switch to workspace N
@@ -235,7 +190,9 @@ myMouseBindings (XConfig {XMonad.modMask = modm}) =
 -- The available layouts.  Note that each layout is separated by |||,
 -- which denotes layout choice.
 --
-myLayout = mkToggle (single FULL) $ avoidStruts (tiled ||| full ||| Mirror tiled)
+myLayout =  spacingRaw False (Border 4 4 4 4) True (Border 4 4 4 4) True
+          $ mkToggle ( single FULL)
+          $ avoidStruts (tiled ||| full ||| Mirror tiled)
   where
     -- default tiling algorithm partitions the screen into two panes
     tiled = Tall nmaster delta ratio
@@ -248,7 +205,8 @@ myLayout = mkToggle (single FULL) $ avoidStruts (tiled ||| full ||| Mirror tiled
 
     -- Percent of screen to increment by when resizing panes
     delta = 3 / 100
-    full = F.fullscreenFull $ noBorders Full 
+
+    full = noBorders Full
 
 ------------------------------------------------------------------------
 -- Window rules:
@@ -265,22 +223,20 @@ myLayout = mkToggle (single FULL) $ avoidStruts (tiled ||| full ||| Mirror tiled
 -- To match on the WM_NAME, you can use 'title' in the same way that
 -- 'className' and 'resource' are used below.
 --
-myManageHook = fullscreenManageHook <+> manageDocks <+> manageDocks
-    <+> composeAll
-      [ className =? "confirm" --> doFloat,
-        className =? "file_progress" --> doFloat,
-        className =? "dialog" --> doFloat,
-        className =? "download" --> doFloat,
-        className =? "error" --> doFloat,
-        className =? "Gimp" --> doFloat,
-        className =? "notification" --> doFloat,
-        className =? "pinentry-gtk-2" --> doFloat,
-        className =? "splash" --> doFloat,
-        className =? "toolbar" --> doFloat,
-        className =? "Yad" --> doCenterFloat,
-        (className =? "firefox" <&&> resource =? "Dialog") --> doFloat
-        -- , isFullscreen --> doFullFloat
-      ]
+myManageHook = composeAll [ manageDocks,
+                            className =? "confirm" --> doFloat,
+                            className =? "file_progress" --> doFloat,
+                            className =? "dialog" --> doFloat,
+                            className =? "download" --> doFloat,
+                            className =? "error" --> doFloat,
+                            className =? "Gimp" --> doFloat,
+                            className =? "notification" --> doFloat,
+                            className =? "pinentry-gtk-2" --> doFloat,
+                            className =? "splash" --> doFloat,
+                            className =? "toolbar" --> doFloat,
+                            className =? "Yad" --> doCenterFloat,
+                            (className =? "firefox" <&&> resource =? "Dialog") --> doFloat,
+                            isFullscreen --> doFullFloat ]
 
 ------------------------------------------------------------------------
 -- Event handling
@@ -291,9 +247,8 @@ myManageHook = fullscreenManageHook <+> manageDocks <+> manageDocks
 -- Defines a custom handler function for X Events. The function should
 -- return (All True) if the default handler is to be run afterwards. To
 -- combine event hooks use mappend or mconcat from Data.Monoid.
---
-myEventHook = F.fullscreenEventHook
---myEventHook = mempty 
+
+myEventHook = mempty 
 ------------------------------------------------------------------------
 -- Status bars and logging
 
@@ -322,7 +277,7 @@ myStartupHook = do
 
 main :: IO ()
 main = do
-  xmonad $ F.fullscreenSupport $ ewmhFullscreen $ ewmh $ docks defaults
+  xmonad $ ewmhFullscreen $ ewmh $ docks defaults
 
 -- A structure containing your configuration settings, overriding
 -- fields in the default config. Any you don't override, will
@@ -343,62 +298,8 @@ defaults =
       keys = myKeys,
       mouseBindings = myMouseBindings,
       manageHook = myManageHook,
-      layoutHook = gaps [(L, 8), (R, 8), (U, 30), (D, 10)] $ spacingRaw True (Border 1 1 1 1) True (Border 1 1 1 1) True $ smartBorders $ myLayout,
+      layoutHook = myLayout,
       handleEventHook = myEventHook,
       logHook = myLogHook,
       startupHook = myStartupHook
     }
-
--- | Finally, a copy of the default bindings in simple textual tabular format.
-help :: String
-help =
-  unlines
-    [ "The default modifier key is 'super'. Default keybindings:",
-      "",
-      "-- launching and killing programs",
-      "mod-Enter        Launch xterminal",
-      "mod-d            Launch dmenu",
-      "mod-Shift-p                  ",
-      "mod-q            Close/kill the focused window",
-      "mod-Space        Rotate through the available layout algorithms",
-      "mod-Shift-Space  Reset the layouts on the current workSpace to default",
-      "mod-n            Resize/refresh viewed windows to the correct size",
-      "",
-      "-- move focus up or down the window stack",
-      "mod-Tab        Move focus to the next window",
-      "mod-Shift-Tab  Move focus to the previous window",
-      "mod-j          Move focus to the next window",
-      "mod-k          Move focus to the previous window",
-      "mod-m          Move focus to the master window",
-      "",
-      "-- modifying the window order",
-      "mod-Return   Swap the focused window and the master window",
-      "mod-Shift-j  Swap the focused window with the next window",
-      "mod-Shift-k  Swap the focused window with the previous window",
-      "",
-      "-- resizing the master/slave ratio",
-      "mod-h  Shrink the master area",
-      "mod-l  Expand the master area",
-      "",
-      "-- floating layer support",
-      "mod-t  Push window back into tiling; unfloat and re-tile it",
-      "",
-      "-- increase or decrease number of windows in the master area",
-      "mod-comma  (mod-,)   Increment the number of windows in the master area",
-      "mod-period (mod-.)   Deincrement the number of windows in the master area",
-      "",
-      "-- quit, or restart",
-      "mod-Shift-q  Quit xmonad",
-      "mod-q        Restart xmonad",
-      "mod-[1..9]   Switch to workSpace N",
-      "",
-      "-- Workspaces & screens",
-      "mod-Shift-[1..9]   Move client to workspace N",
-      "mod-{w,e,r}        Switch to physical/Xinerama screens 1, 2, or 3",
-      "mod-Shift-{w,e,r}  Move client to screen 1, 2, or 3",
-      "",
-      "-- Mouse bindings: default actions bound to mouse events",
-      "mod-button1  Set the window to floating mode and move by dragging",
-      "mod-button2  Raise the window to the top of the stack",
-      "mod-button3  Set the window to floating mode and resize by dragging"
-    ]
