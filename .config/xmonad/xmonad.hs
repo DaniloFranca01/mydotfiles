@@ -26,8 +26,8 @@ import XMonad.Hooks.ManageDocks
 import XMonad.Hooks.ManageHelpers (doFullFloat, isFullscreen, doCenterFloat)
 import XMonad.Hooks.SetWMName
 import XMonad.Layout.NoBorders
-import XMonad.Layout.Spacing (Border (Border), spacingRaw)
-import XMonad.Layout.MultiToggle(Toggle(..), single, mkToggle)
+import XMonad.Layout.Spacing (Border (Border), spacingRaw, smartSpacing)
+import XMonad.Layout.MultiToggle(Toggle(..), mkToggle, single, (??), EOT(..))
 import XMonad.Layout.MultiToggle.Instances
 import qualified XMonad.StackSet as W
 import XMonad.Util.SpawnOnce (spawnOnce)
@@ -100,7 +100,7 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) =
       ((modm,               xK_b), spawn (executor "btop")),
       -- Close focused window
       ((modm, xK_q), kill),
-      ((modm, xK_f), sendMessage (Toggle FULL)),
+      ((modm, xK_f), sendMessage $ Toggle FULL),
       -- Rotate through the available layout algorithms
       ((modm, xK_space), sendMessage NextLayout),
       --  Reset the layouts on the current workspace to default
@@ -190,12 +190,14 @@ myMouseBindings (XConfig {XMonad.modMask = modm}) =
 -- The available layouts.  Note that each layout is separated by |||,
 -- which denotes layout choice.
 --
-myLayout =  spacingRaw False (Border 4 4 4 4) True (Border 4 4 4 4) True
-          $ mkToggle ( single FULL)
-          $ avoidStruts (tiled ||| full ||| Mirror tiled)
+myLayout =  smartBorders
+          $ spacingRaw True (Border 4 4 4 4) True (Border 4 4 4 4) True
+          $ mkToggle (NOBORDERS ?? FULL ?? EOT)
+          $ tiled ||| full ||| mirroedTiled
+-- $ mkToggle (single FULL)
   where
     -- default tiling algorithm partitions the screen into two panes
-    tiled = Tall nmaster delta ratio
+    tiled = avoidStruts $ Tall nmaster delta ratio
 
     -- The default number of windows in the master pane
     nmaster = 1
@@ -207,6 +209,8 @@ myLayout =  spacingRaw False (Border 4 4 4 4) True (Border 4 4 4 4) True
     delta = 3 / 100
 
     full = noBorders Full
+
+    mirroedTiled = avoidStruts $ Mirror tiled
 
 ------------------------------------------------------------------------
 -- Window rules:
