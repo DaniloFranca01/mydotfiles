@@ -6,7 +6,6 @@ import System.Exit ()
 import System.IO (hPutStrLn)
 import XMonad
 import XMonad.Util.SpawnOnce (spawnOnce)
-import XMonad.Hooks.DynamicLog
 import XMonad.Hooks.EwmhDesktops
 import XMonad.Hooks.ManageDocks (Direction2D (D, L, R, U), avoidStruts, docks, manageDocks)
 import XMonad.Hooks.ManageHelpers (doFullFloat, isFullscreen, doCenterFloat)
@@ -167,6 +166,7 @@ myManageHook = composeAll [ manageDocks,
                             className =? "splash" --> doFloat,
                             className =? "toolbar" --> doFloat,
                             className =? "Yad" --> doCenterFloat,
+                            className =? "jetbrains-idea" --> doCenterFloat,
                             (className =? "firefox" <&&> resource =? "Dialog") --> doFloat,
 														isFullscreen --> doFullFloat]
 
@@ -182,7 +182,6 @@ myLogHook dbus = def { ppOutput = D.send dbus , ppOrder = \(ws:l:t:_) -> [l] }
 ------------------------------------------------------------------------
 -- Startup hook
 myStartupHook = do
-  spawn "$HOME/.config/polybar/launch.sh"
   spawnOnce "$HOME/.config/xmonad/autostart.sh"
   setWMName "LG3D"
 
