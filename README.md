@@ -2,7 +2,7 @@
 
 |qTile|xMonad|
 |-|-|
-|![img](Imagens/WMPreviews/qTilePreview.png)|![img](Imagens/WMPreviews/xMonadPreview.png)|
+|![img](https://raw.githubusercontent.com/DaniloFranca01/mydotfiles/master/Imagens/WMPreviews/qTilePreview.png)|![img](https://raw.githubusercontent.com/DaniloFranca01/mydotfiles/master/Imagens/WMPreviews/xMonadPreview.png)|
 
 - Tema padrão: Dracula
 - Wallpapers: `~/Imagens/Wallpapers`
@@ -15,7 +15,7 @@
   -  zeKill (Mire, atire e ele mata o processo)
 - Configs para:
   - Xmonad (Tilling WM) Baseado em: [Source](https://gitlab.com/dwt1/dotfiles)
-	  - Xmobar (Status Bar) 
+  - Polybar 
   - qTile (Tilling WM) Baseado em: [Source](https://gitlab.com/dwt1/dotfiles)
   - picom (Compositor, fork do jonaburg) [Source](https://github.com/jonaburg/picom)
 	- vim/nvim (Editor de texto)
