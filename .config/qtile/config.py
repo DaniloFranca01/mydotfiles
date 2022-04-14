@@ -17,7 +17,7 @@ scripts = home+"/Scripts/"
 fontFamily = "Ubuntu"
 mod = "mod4" # Sets mod key to SUPER/WINDOWS
 alt = "mod1"
-myTerm = "st"      # My terminal of choice
+myTerm = "kitty"      # My terminal of choice
 execTerm= myTerm+" -e "
 myBrowser = "firefox" # My browser of choice
 

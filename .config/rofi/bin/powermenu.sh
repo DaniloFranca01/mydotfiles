@@ -14,11 +14,11 @@ cpu=$($dir/bin/usedcpu)
 memory=$($dir/bin/usedram)
 
 # Options
-shutdown=""
-reboot=""
-lock=""
-suspend=""
-logout=""
+shutdown=""
+reboot=""
+lock=""
+suspend="⏾"
+logout=""
 
 # Confirmation
 confirm_exit() {

@@ -25,7 +25,7 @@ import Graphics.X11.ExtraTypes.XF86 (xF86XK_AudioLowerVolume, xF86XK_AudioMute, 
 
 ------------------------------------------------------------------------
 -- Some useful variables
-myTerminal = "st"
+myTerminal = "kitty"
 exeParam   = " -e "
 executor :: String -> String 
 executor program = do myTerminal ++ exeParam ++ program

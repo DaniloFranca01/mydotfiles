@@ -9,7 +9,7 @@
 
 configuration {
     show-icons:                     false;
-    font:                      		"Ubuntu 14";
+    font:                      		"UbuntuMono Nerd Fonts 14";
     disable-history:                false;
 	sidebar-mode: 					false;
 }
@@ -22,18 +22,18 @@ configuration {
 }
 
 window {
-    transparency:                   "real";
-    border-radius:                  0px;
-    location:                       center;
+    transparency:                 "real";
+    border-radius:                0px;
+    location:                     center;
     width:                       	800px;
-    x-offset:                       0px;
-    y-offset:                       0px;
+    x-offset:                     0px;
+    y-offset:                     0px;
 }
 
 listview {
-    columns:						5;
+    columns:						4;
     lines:							1;
-    spacing:                        15px;
+    spacing:                        20px;
     cycle:                          true;
     dynamic:                        true;
     layout:                         vertical;
@@ -42,7 +42,7 @@ listview {
 mainbox {
     background-color:               @background;
     children:                       [ listview ];
-    spacing:                        15px;
+    spacing:                        20px;
     margin:                         40px;
 }
 
@@ -56,24 +56,11 @@ element {
 element-text {
     background-color: 				inherit;
     text-color:       				inherit;
-    font:							"feather 37";
-    expand:                         true;
-    horizontal-align:               0.5;
-    vertical-align:                 0.5;
-    margin:                         40px 0px 40px 0px;
-}
-
-element normal.urgent,
-element alternate.urgent {
-    background-color:               @off;
-    text-color:                     @background;
-    border-radius:                  0px;
-}
-
-element normal.active,
-element alternate.active {
-    background-color:               @on;
-    text-color:                     @background;
+    font:						          "Ubuntu Nerd Font Complete  40";
+    expand:                   true;
+    horizontal-align:         0.5;
+    vertical-align:           0.5;
+    margin:                   40px 0px 40px 0px;
 }
 
 element selected {
@@ -82,14 +69,4 @@ element selected {
     border:                  				0px;
     border-radius:                  0px;
     border-color:                  	@border;
-}
-
-element selected.urgent {
-    background-color:               @on;
-    text-color:                     @background;
-}
-
-element selected.active {
-    background-color:               @off;
-    color:                          @background;
 }
