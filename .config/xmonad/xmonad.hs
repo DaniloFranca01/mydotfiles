@@ -12,6 +12,7 @@ import XMonad.Hooks.ManageHelpers (doFullFloat, isFullscreen, doCenterFloat)
 import XMonad.Hooks.SetWMName
 import XMonad.Hooks.DynamicLog
 import XMonad.Hooks.StatusBar.PP
+import XMonad.Hooks.WindowSwallowing
 import XMonad.Layout.Spiral(spiral)
 import XMonad.Layout.Spacing (Border (Border), spacingRaw, smartSpacing)
 import XMonad.Layout.MultiToggle(Toggle(..), mkToggle, single, (??), EOT(..))
@@ -172,7 +173,8 @@ myManageHook = composeAll [ manageDocks,
 
 ------------------------------------------------------------------------
 -- Event handling
-myEventHook = mempty
+--myEventHook = mempty
+myEventHook = swallowEventHook (className =? "kitty") (return True)
 
 ------------------------------------------------------------------------
 -- Status bars and logging
