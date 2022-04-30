@@ -62,7 +62,8 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) =
       ((modm,               xK_b), spawn (executor "btop")),
       -- Close focused window
       ((modm, xK_q), kill),
-      ((modm, xK_f), sendMessage $ Toggle NBFULL),
+      -- Set FullScreen
+			((modm, xK_f), sendMessage $ Toggle NBFULL),
       -- Rotate through the available layout algorithms
       ((modm, xK_space), sendMessage NextLayout),
       --  Reset the layouts on the current workspace to default
@@ -139,7 +140,7 @@ myMouseBindings (XConfig {XMonad.modMask = modm}) =
 
 ------------------------------------------------------------------------
 -- Layouts:
-myLayout = spacingRaw True (Border 0 5 5 5) True (Border 5 5 5 5) True
+myLayout =  spacingRaw True (Border 0 5 5 5) True (Border 5 5 5 5) True
           $ mkToggle (NBFULL ?? NOBORDERS ?? EOT)
           $ avoidStruts $ tiled ||| mirroedTiled ||| spiral (6/7)
   where
@@ -151,6 +152,7 @@ myLayout = spacingRaw True (Border 0 5 5 5) True (Border 5 5 5 5) True
     delta = 3 / 100
     -- Default proportion of screen occupied by master pane
     ratio = 1 / 2
+		-- Mirrored Tiled mode
     mirroedTiled = Mirror tiled
 
 ------------------------------------------------------------------------

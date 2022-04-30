@@ -10,7 +10,6 @@ Plug 'ap/vim-css-color'
 Plug 'ryanoasis/vim-devicons'
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
-Plug 'lervag/vimtex'
 call plug#end()
 
 "Vim
@@ -28,11 +27,6 @@ syntax on
 "Italico
 let &t_ZH="\e[3m"
 let &t_ZR="\e[23m"
-
-" laTeX
-let g:tex_flavor = 'latex' 
-let g:vimtex_view_method = 'zathura'
-let g:vimtex_compiler_method = 'latexmk'
 
 " Theme
 set termguicolors
