@@ -14,7 +14,7 @@ from typing import List  # noqa: F401from typing import List  # noqa: F401
 home = os.path.expanduser('~')
 menu = home+"/.config/rofi/bin/"
 scripts = home+"/Scripts/"
-fontFamily = "Ubuntu"
+fontFamily = "Ubuntu Nerd Font Complete"
 mod = "mod4" # Sets mod key to SUPER/WINDOWS
 alt = "mod1"
 myTerm = "kitty"      # My terminal of choice
@@ -183,11 +183,11 @@ keys = [
              )
          ]
 
-groups = [Group(" ", layout='monadtall'),
-          Group(" ", layout='monadtall'),
-          Group(" ", layout='monadtall'),
-          Group(" ", layout='monadtall'),
-          Group(" ", layout='monadtall')]
+groups = [Group("", layout='monadtall'),
+          Group("", layout='monadtall'),
+          Group("", layout='monadtall'),
+          Group("", layout='monadtall'),
+          Group("", layout='monadtall')]
 
 # Allow MODKEY+[0 through 9] to bind to groups, see https://docs.qtile.org/en/stable/manual/config/groups.html
 # MOD4 + index Number : Switch to Group[index]
@@ -265,13 +265,13 @@ extension_defaults = widget_defaults.copy()
 def init_widgets_list():
     widgets_list = [
               widget.TextBox(
-                       text = ' ',
+                       text = '',
                        mouse_callbacks = {'Button1': lambda: qtile.cmd_spawn(home+menu+"launcher_misc")},
                        font = fontFamily+" Mono",
                        background = colors[6],
                        foreground = colors[1],
                        padding = 6,
-                       fontsize = 18
+                       fontsize = 28
                        ),
               widget.TextBox(
                        text = '',
@@ -283,7 +283,7 @@ def init_widgets_list():
                        ),
               widget.GroupBox(
                        font = fontFamily,
-                       fontsize = 17,
+                       fontsize = 28,
                        margin_y = 3,
                        margin_x = 0,                
                        padding_y = 0,

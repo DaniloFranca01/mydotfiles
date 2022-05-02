@@ -13,6 +13,7 @@ import XMonad.Hooks.SetWMName
 import XMonad.Hooks.DynamicLog
 import XMonad.Hooks.StatusBar.PP
 import XMonad.Hooks.WindowSwallowing
+import XMonad.Layout.NoBorders(smartBorders)
 import XMonad.Layout.Spiral(spiral)
 import XMonad.Layout.Spacing (Border (Border), spacingRaw, smartSpacing)
 import XMonad.Layout.MultiToggle(Toggle(..), mkToggle, single, (??), EOT(..))
@@ -140,7 +141,8 @@ myMouseBindings (XConfig {XMonad.modMask = modm}) =
 
 ------------------------------------------------------------------------
 -- Layouts:
-myLayout =  spacingRaw True (Border 0 5 5 5) True (Border 5 5 5 5) True
+myLayout =  smartBorders
+          $ spacingRaw True (Border 0 5 5 5) True (Border 5 5 5 5) True
           $ mkToggle (NBFULL ?? NOBORDERS ?? EOT)
           $ avoidStruts $ tiled ||| mirroedTiled ||| spiral (6/7)
   where
@@ -195,7 +197,10 @@ main :: IO ()
 main = do
   dbus <- D.connect
   D.requestAccess dbus
-  xmonad $ ewmhFullscreen $ ewmh $ docks $ defaults { logHook = dynamicLogWithPP (myLogHook dbus) }
+  xmonad $ ewmhFullscreen
+         $ ewmh
+         $ docks
+         $ defaults { logHook = dynamicLogWithPP (myLogHook dbus) }
 
 defaults =
   def
