@@ -19,6 +19,7 @@
   - qTile (Tilling WM) Baseado em: [Source](https://gitlab.com/dwt1/dotfiles)
   - picom (Compositor, fork do jonaburg) [Source](https://github.com/jonaburg/picom)
 	- vim/nvim (Editor de texto)
+  - DoomEmacs (Editor de texto)
 	- zsh (Shell)
 	- ranger (Gerenciador de Arquivos)
 	- kitty (Emulador de terminal)
