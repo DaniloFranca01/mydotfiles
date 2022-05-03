@@ -7,3 +7,4 @@ nm-applet &
 $HOME/Scripts/runPasystray.sh
 feh --bg-fill $HOME/Imagens/Wallpapers/arch.png &
 $HOME/Scripts/compon.sh picom &
+/usr/bin/emacs --daemon &

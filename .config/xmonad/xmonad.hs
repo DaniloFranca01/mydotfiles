@@ -1,22 +1,19 @@
-import Control.Monad (join, when)
-import Data.Maybe (maybeToList)
 import Data.Monoid ()
 import qualified Data.Map as M
 import System.Exit ()
-import System.IO (hPutStrLn)
 import XMonad
 import XMonad.Util.SpawnOnce (spawnOnce)
 import XMonad.Hooks.EwmhDesktops
-import XMonad.Hooks.ManageDocks (Direction2D (D, L, R, U), avoidStruts, docks, manageDocks)
+import XMonad.Hooks.ManageDocks (avoidStruts, docks, manageDocks)
 import XMonad.Hooks.ManageHelpers (doFullFloat, isFullscreen, doCenterFloat)
 import XMonad.Hooks.SetWMName
 import XMonad.Hooks.DynamicLog
-import XMonad.Hooks.StatusBar.PP
+import XMonad.Hooks.StatusBar.PP()
 import XMonad.Hooks.WindowSwallowing
 import XMonad.Layout.NoBorders(smartBorders)
 import XMonad.Layout.Spiral(spiral)
-import XMonad.Layout.Spacing (Border (Border), spacingRaw, smartSpacing)
-import XMonad.Layout.MultiToggle(Toggle(..), mkToggle, single, (??), EOT(..))
+import XMonad.Layout.Spacing (Border (Border), spacingRaw)
+import XMonad.Layout.MultiToggle(Toggle(..), mkToggle, (??), EOT(..))
 import XMonad.Layout.MultiToggle.Instances
 import qualified XMonad.StackSet as W
 import qualified XMonad.DBus as D
@@ -61,10 +58,11 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) =
       ((modm .|. shiftMask, xK_b), spawn "~/.config/polybar/launch.sh"),
       ((modm,               xK_w), spawn (myBrowser)),
       ((modm,               xK_b), spawn (executor "btop")),
+			((modm,               xK_e), spawn ("emacsclient -c -a 'emacs'")),
       -- Close focused window
       ((modm, xK_q), kill),
       -- Set FullScreen
-			((modm, xK_f), sendMessage $ Toggle NBFULL),
+      ((modm, xK_f), sendMessage $ Toggle NBFULL),
       -- Rotate through the available layout algorithms
       ((modm, xK_space), sendMessage NextLayout),
       --  Reset the layouts on the current workspace to default
@@ -154,7 +152,7 @@ myLayout =  smartBorders
     delta = 3 / 100
     -- Default proportion of screen occupied by master pane
     ratio = 1 / 2
-		-- Mirrored Tiled mode
+    -- Mirrored Tiled mode
     mirroedTiled = Mirror tiled
 
 ------------------------------------------------------------------------
@@ -173,7 +171,7 @@ myManageHook = composeAll [ manageDocks,
                             className =? "Yad" --> doCenterFloat,
                             className =? "jetbrains-idea" --> doCenterFloat,
                             (className =? "firefox" <&&> resource =? "Dialog") --> doFloat,
-														isFullscreen --> doFullFloat]
+                            isFullscreen --> doFullFloat]
 
 ------------------------------------------------------------------------
 -- Event handling
@@ -183,7 +181,7 @@ myEventHook = swallowEventHook (className =? "kitty") (return True)
 ------------------------------------------------------------------------
 -- Status bars and logging
 myLogHook :: DC.Client -> PP
-myLogHook dbus = def { ppOutput = D.send dbus , ppOrder = \(ws:l:t:_) -> [l] }
+myLogHook dbus = def { ppOutput = D.send dbus , ppOrder = \(ws:l:t) -> [l] }
 
 ------------------------------------------------------------------------
 -- Startup hook

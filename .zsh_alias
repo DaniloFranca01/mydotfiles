@@ -18,4 +18,5 @@ alias corc='cor | xclip -in -selection clipboard'
 alias polycfg='nvim ~/.config/polybar/config.ini'
 alias polyres='~/.config/polybar/launch.sh'
 alias xmonres='xmonad --recompile && xmonad --restart'
+alias emacs="emacsclient -c -a 'emacs'"
 alias esq='cat ~/.zsh_alias ~/.zsh_var | less'

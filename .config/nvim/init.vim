@@ -9,7 +9,6 @@ Plug 'junegunn/fzf.vim'
 Plug 'ap/vim-css-color'
 Plug 'ryanoasis/vim-devicons'
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
 call plug#end()
 
 "Vim
@@ -63,5 +62,3 @@ EOF
 map <F4> :buffers<CR>:buffer<Space>
 map <F5> :NERDTreeToggle<CR>
 map <F6> :Files<CR>
-"   COC
-inoremap <silent><expr> <c-space> coc#refresh()
