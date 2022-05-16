@@ -8,65 +8,65 @@
  */
 
 configuration {
-    show-icons:                     false;
-    font:                      		"UbuntuMono Nerd Fonts 14";
-    disable-history:                false;
-	sidebar-mode: 					false;
+		show-icons:         false;
+    font:               "Ubuntu Nerd Font Complete 14";
+		disable-history:    false;
+    sidebar-mode: 			false;
 }
 
 @import "theme.rasi"
 
 * {
-    background-color:               @background;
-    text-color:                     @foreground;
+    background-color:   @background;
+    text-color:         @foreground;
 }
 
 window {
-    transparency:                 "real";
-    border-radius:                0px;
-    location:                     center;
-    width:                       	800px;
-    x-offset:                     0px;
-    y-offset:                     0px;
+    transparency:       "real";
+    border-radius:      0px;
+    location:           center;
+    width:             	800px;
+    x-offset:           0px;
+    y-offset:           0px;
 }
 
 listview {
     columns:						4;
     lines:							1;
-    spacing:                        20px;
-    cycle:                          true;
-    dynamic:                        true;
-    layout:                         vertical;
+    spacing:            20px;
+    cycle:              true;
+    dynamic:            true;
+    layout:             vertical;
 }
 
 mainbox {
-    background-color:               @background;
-    children:                       [ listview ];
-    spacing:                        20px;
-    margin:                         40px;
+    background-color:   @background;
+    children:           [ listview ];
+    spacing:            20px;
+    margin:             40px;
 }
 
 element {
-    background-color:               @background-light;
-    text-color:                     @foreground;
-    orientation:                    vertical;
-    border-radius:                  0px;
+    background-color:   @background-light;
+    text-color:         @foreground;
+    orientation:        vertical;
+    border-radius:      0px;
 }
 
 element-text {
-    background-color: 				inherit;
-    text-color:       				inherit;
-    font:						          "Ubuntu Nerd Font Complete  40";
-    expand:                   true;
-    horizontal-align:         0.5;
-    vertical-align:           0.5;
-    margin:                   40px 0px 40px 0px;
+    background-color: 	inherit;
+    text-color:       	inherit;
+		font:						    "Ubuntu Nerd Font Complete 40";
+    expand:             true;
+    horizontal-align:   0.5;
+    vertical-align:     0.5;
+    margin:             40px 0px 40px 0px;
 }
 
 element selected {
-    background-color:               @accent;
-    text-color:                     @background;
-    border:                  				0px;
-    border-radius:                  0px;
-    border-color:                  	@border;
+    background-color:		@accent;
+    text-color:         @background;
+    border:             0px;
+    border-radius:      0px;
+    border-color:       @border;
 }

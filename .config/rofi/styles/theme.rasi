@@ -1,10 +1,10 @@
 * {
-  accent:           #d192d2;
-  background:       #282A36;
-  background-bar:	#d192d2;
-  background-light: #BD93F9;
-  background-alt:	#00000000;
-  foreground:       #F8f8f2;
-  on:               #5AF78E;
-  off:              #FF6E67;
+				accent:           #d192d2;
+				background:       #282A36;
+				background-bar:		#d192d2;
+				background-light: #BD93F9;
+				background-alt:		#00000000;
+				foreground:       #F8f8f2;
+				on:               #5AF78E;
+				off:              #FF6E67;
 }

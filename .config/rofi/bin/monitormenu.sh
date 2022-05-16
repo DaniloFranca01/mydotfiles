@@ -10,9 +10,9 @@ rofi_command="rofi -theme $styles/monitormenu.rasi"
 
 # Options
 tv=""
-monitor="度"
-extender="度"
-duplicar="度 度"
+monitor=""
+extender=""
+duplicar=" "
 
 # Variable passed to rofi
 options="$tv\n$monitor\n$extender\n$duplicar"

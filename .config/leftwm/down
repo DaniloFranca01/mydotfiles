@@ -1,0 +1,7 @@
+#! /bin/sh
+leftwm-command "UnloadTheme"
+pkill polybar &
+pkill dunst &
+pkill nm-applet &
+pkill picom &
+pkill emacs &

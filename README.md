@@ -15,9 +15,10 @@
   -  zeKill (Mire, atire e ele mata o processo)
 - Configs para:
   - Xmonad (Tilling WM) Baseado em: [Source](https://gitlab.com/dwt1/dotfiles)
-  - Polybar 
+  - LeftWm (Tilling WM)
   - qTile (Tilling WM) Baseado em: [Source](https://gitlab.com/dwt1/dotfiles)
-  - picom (Compositor, fork do jonaburg) [Source](https://github.com/jonaburg/picom)
+  - Polybar (Status bar)
+	- picom (Compositor, fork do jonaburg) [Source](https://github.com/jonaburg/picom)
 	- vim/nvim (Editor de texto)
   - DoomEmacs (Editor de texto)
 	- zsh (Shell)
