@@ -1,8 +1,8 @@
 # Configurações padrões para minha instalação do Arch
 
-|qTile|xMonad|
-|-|-|
-|![img](https://raw.githubusercontent.com/DaniloFranca01/mydotfiles/master/Imagens/WMPreviews/qTilePreview.png)|![img](https://raw.githubusercontent.com/DaniloFranca01/mydotfiles/master/Imagens/WMPreviews/xMonadPreview.png)|
+|qTile|xMonad|LeftWM
+|-|-|-|
+|![img](https://raw.githubusercontent.com/DaniloFranca01/mydotfiles/master/Imagens/WMPreviews/qTilePreview.png)|![img](https://raw.githubusercontent.com/DaniloFranca01/mydotfiles/master/Imagens/WMPreviews/xMonadPreview.png)|![img](https://raw.githubusercontent.com/DaniloFranca01/mydotfiles/301c24927c2ab41a44e88b86cb84188c86d07192/Imagens/WMPreviews/LeftWmPreview.png)|
 
 - Tema padrão: Dracula
 - Wallpapers: `~/Imagens/Wallpapers`
