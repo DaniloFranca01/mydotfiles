@@ -1,7 +1,7 @@
-modkey = "Mod4"
+odkey = "Mod4"
 mousekey = "Mod4"
 workspaces = []
-tags = ["", "", "", "", ""]
+tags = ["", "", "", "", ""]
 layouts = ["MainAndVertStack", "MainAndHorizontalStack", "GridHorizontal", "EvenHorizontal", "EvenVertical", "Fibonacci", "CenterMainBalanced", "Monocle"]
 layout_mode = "Workspace"
 insert_behavior = "Bottom"
@@ -88,6 +88,11 @@ key = "Return"
 command = "ToggleFullScreen"
 modifier = ["modkey"]
 key = "f"
+
+[[keybind]]
+command = "ToggleFloating"
+modifier = ["modkey"]
+key = "t"
 
 [[keybind]]
 command = "CloseWindow"

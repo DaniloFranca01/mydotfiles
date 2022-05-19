@@ -61,7 +61,7 @@ keys = [
              lazy.spawn(menu+"powermenu.sh"),
              desc='Run Power Menu'
              ),
-         Key([mod], "p",
+         Key([mod, "shift"], "p",
              lazy.spawn(menu+"monitormenu.sh"),
              desc='Run Monitors Menu'
              ),
@@ -74,7 +74,7 @@ keys = [
              lazy.shutdown(),
              desc='Shutdown Qtile'
              ),
-         Key([mod, "shift"], "p",
+         Key([mod, "shift"], "c",
              lazy.spawn(scripts+"comp.sh"),
              desc='Reload Picom'
              ),

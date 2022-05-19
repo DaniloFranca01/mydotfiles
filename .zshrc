@@ -10,3 +10,4 @@ setopt HIST_IGNORE_SPACE
 source $ZSH/oh-my-zsh.sh
 source $HOME/.zsh_alias
 source $HOME/.zsh_var
+source $HOME/.pearl_conf
