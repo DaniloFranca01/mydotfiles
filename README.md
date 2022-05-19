@@ -12,7 +12,8 @@
   -  fonttable (Printa todos os caracteres de todas as fontes no terminal)
   -  mymonitor (Muda a configuração de monitores de 4 formas parametrizadas)
   -  screenshot (Tira screenshots de 3 formas parametrizadas)
-  -  zeKill (Mire, atire e ele mata o processo)
+	-  updateXmonad (Atualiza xmonad e suas dependencias)
+  -  zeKill (Mire, atire e ele mata o processo, com som!)
 - Configs para:
   - Xmonad (Tilling WM) Baseado em: [Source](https://gitlab.com/dwt1/dotfiles)
   - LeftWm (Tilling WM)
@@ -24,6 +25,7 @@
 	- zsh (Shell)
 	- ranger (Gerenciador de Arquivos)
 	- kitty (Emulador de terminal)
+	- dunst (Daemon de notificações)
 	- paru (AUR manager) [Source](https://github.com/Morganamilo/paru)
 	- rofi (Menus) Baseado em: [Source](https://github.com/adi1090x/rofi)
 	  - launcher
