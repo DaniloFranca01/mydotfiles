@@ -11,8 +11,8 @@ rofi_command="rofi -theme $styles/monitormenu.rasi"
 # Options
 tv=""
 monitor=""
-extender=""
-duplicar=" "
+extender=""
+duplicar=""
 
 # Variable passed to rofi
 options="$tv\n$monitor\n$extender\n$duplicar"

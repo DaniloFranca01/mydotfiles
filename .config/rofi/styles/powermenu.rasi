@@ -38,6 +38,8 @@ prompt {
     border:                 2px 2px 4px 2px;
     border-radius:          0px;
     border-color:           @foreground;
+    font:										"Machiroka 12";
+
 }
 
 textbox-prompt-colon {
@@ -88,7 +90,7 @@ element {
 element-text {
     background-color: 			inherit;
     text-color:       			inherit;
-    font:										"Ubuntu Nerd Font Complete 42";
+    font:										"Machiroka 42";
     expand:                 true;
     horizontal-align:       0.5;
     vertical-align:         0.5;

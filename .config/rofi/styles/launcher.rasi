@@ -8,10 +8,11 @@
  */
 
 configuration {
+
 	  font:							   	"Ubuntu Nerd Font Complete 10";
-    show-icons:          	true;
+		show-icons:          	true;
 	  icon-theme: 			   	"Papirus";
-    display-drun: 		   	"";
+    display-drun: 		   	"";
     drun-display-format: 	"{name}";
     disable-history:     	false;
 	  sidebar-mode: 			 	false;
@@ -37,7 +38,8 @@ prompt {
 	  padding: 						 	0.30% 0.75% 0% -0.5%;
 	  background-color: 	 	@background-alt;
   	text-color: 				 	@foreground;
-	  font:							   	"Ubuntu Nerd Font Complete 10";
+		font:									"Machiroka 12";
+
 }
 
 entry {
@@ -47,7 +49,7 @@ entry {
     expand:              	true;
     horizontal-align:    	0;
     placeholder:         	"Search";
-    padding:             	-0.15% 0% 0% 0%;
+    padding:             	0.5% 0% 0% 0%;
     blink:               	true;
 }
 
@@ -57,7 +59,7 @@ inputbar {
     text-color:          	@foreground;
     expand:              	false;
 	  border:							 	0.1%;
-    border-radius:       	10px;
+    border-radius:       	0px;
 	  border-color:				 	@background-light;
     margin:              	0% 0% 0% 0%;
     padding:             	1%;
@@ -113,6 +115,6 @@ element selected {
     background-color:			@background-bar;
     text-color:         	@foreground;
 	  border:								0.1%;
-    border-radius:      	4px;
+    border-radius:      	0px;
     border-color:       	@accent;
 }
