@@ -37,7 +37,8 @@ myClickJustFocuses = False
 myBorderWidth = 2
 myModMask = mod4Mask
 -- > workspaces = ["sys", "web", "code", "chat", "docs" ]
-myWorkspaces = ["\63083", "\63288", "\57909", "\63107", "\59333"] 
+-- myWorkspaces = ["\63083", "\63288", "\57909", "\63107", "\59333"] 
+myWorkspaces = ["\59285", "\59656", "\59255", "\63584", "\61788"] 
 myNormalBorderColor  = "#bd93f9"
 myFocusedBorderColor = "#ff79c6"
 
