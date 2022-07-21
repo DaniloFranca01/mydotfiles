@@ -9,3 +9,5 @@ export PATH=$HOME/.emacs.d/bin:$PATH
 export _JAVA_AWT_WM_NONREPARENTING=1
 export QT_QPA_PLATFORMTHEME="gtk3"
 export RANGER_LOAD_DEFAULT_RC=False
+export RUST_SRC_PATH=$(rustc --print sysroot)/lib/rustlib/src/rust/library
+export npm_config_prefix="$HOME/.local"

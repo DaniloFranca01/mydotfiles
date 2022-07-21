@@ -24,3 +24,4 @@ alias emacs="emacsclient -c -a 'emacs'"
 alias sagent='eval "$(ssh-agent -s)"'
 alias fonticon='perl ~/Scripts/test-fonts.pl'
 alias esq='cat ~/.zsh_alias ~/.zsh_var | less'
+alias code='codium'

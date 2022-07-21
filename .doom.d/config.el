@@ -73,3 +73,7 @@
 ;;
 ;; You can also try 'gd' (or 'C-c c d') to jump to their definition and see how
 ;; they are implemented.
+(beacon-mode 1)
+(add-hook 'haskell-mode-hook 'interactive-haskell-mode)
+(setq haskell-process-type 'cabal-repl)
+(setq native-comp-deferred-compilation t)

@@ -24,7 +24,7 @@ import Graphics.X11.ExtraTypes.XF86 (xF86XK_AudioLowerVolume, xF86XK_AudioMute, 
 
 ------------------------------------------------------------------------
 -- Some useful variables
-myTerminal = "kitty"
+myTerminal = "alacritty"
 exeParam   = " -e "
 executor :: String -> String 
 executor program = do myTerminal ++ exeParam ++ program
@@ -37,8 +37,9 @@ myClickJustFocuses = False
 myBorderWidth = 2
 myModMask = mod4Mask
 -- > workspaces = ["sys", "web", "code", "chat", "docs" ]
--- myWorkspaces = ["\63083", "\63288", "\57909", "\63107", "\59333"] 
-myWorkspaces = ["\59285", "\59656", "\59255", "\63584", "\61788"] 
+-- myWorkspaces = ["\63083", "\63288", "\57909", "\63107", "\59333"]
+myWorkspaces = ["1","2","3","4","5","6","7","8","9"]
+--myWorkspaces = ["\59285", "\59656", "\59255", "\63584", "\61788"] 
 myNormalBorderColor  = "#bd93f9"
 myFocusedBorderColor = "#ff79c6"
 

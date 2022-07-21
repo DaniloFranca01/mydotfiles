@@ -23,6 +23,9 @@ set clipboard=unnamedplus
 filetype plugin indent on
 syntax on
 
+"Neovide
+set guifont=FiraCode\ Nerd\ Font\ NF:h10
+
 "Italico
 let &t_ZH="\e[3m"
 let &t_ZR="\e[23m"

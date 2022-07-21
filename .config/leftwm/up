@@ -16,5 +16,4 @@ dunst &
 nm-applet &
 $HOME/Scripts/runPasystray.sh
 feh --bg-fill $HOME/Imagens/Wallpapers/arch.png &
-/usr/bin/emacs --daemon &
 $SCRIPTPATH/polybarLaunch.sh &
