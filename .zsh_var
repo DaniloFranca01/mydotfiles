@@ -11,3 +11,5 @@ export QT_QPA_PLATFORMTHEME="gtk3"
 export RANGER_LOAD_DEFAULT_RC=False
 export RUST_SRC_PATH=$(rustc --print sysroot)/lib/rustlib/src/rust/library
 export npm_config_prefix="$HOME/.local"
+export SSH_AUTH_SOCK="$XDG_RUNTIME_DIR/ssh-agent.socket"
+#export SSH_ASKPASS=ssh-askpass
