@@ -7,4 +7,4 @@ nm-applet &
 $HOME/Scripts/runPasystray.sh
 feh --bg-fill $HOME/Imagens/Wallpapers/arch.png &
 $HOME/Scripts/compon.sh picom &
-ssh-add -q $HOME/.ssh/id_rsa
+ssh-add -q $HOME/.ssh/id_rsa $HOME/.ssh/id_ed25519
