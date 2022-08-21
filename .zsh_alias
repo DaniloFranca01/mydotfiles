@@ -23,5 +23,6 @@ alias xmonres='xmonad --recompile && xmonad --restart'
 alias emacs="emacsclient -c -a 'emacs'"
 alias sagent='eval "$(ssh-agent -s)"'
 alias fonticon='perl ~/Scripts/test-fonts.pl'
-alias esq='cat ~/.zsh_alias ~/.zsh_var | less'
 alias code='codium'
+alias mirrorup='curl -s "https://archlinux.org/mirrorlist/?country=BR&protocol=http&protocol=https&ip_version=4&use_mirror_status=on" | sed -e 's/^#Server/Server/' -e '/^#/d' | sudo bash -c "rankmirrors -n 10 - > /etc/pacman.d/mirrorlist"'
+alias esq='cat ~/.zsh_alias ~/.zsh_var | less'
